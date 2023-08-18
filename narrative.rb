@@ -24,8 +24,8 @@ module Narrative
         "Guess the code. Good luck! (#{count} tries left): "
     end
 
-    def wrong
-        "That is a wrong answer."
+    def wrong(yes, no)
+        "Correct number, wrong location = #{no}. \nCorrect number, correct location = #{yes}."
     end
 
     def correct(who)
