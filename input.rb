@@ -4,11 +4,41 @@ module Input
     include Narrative
     
     def makes(code)
+        result = code
         if not is_valid?(code)
             puts invalid
-            makes(gets.chomp)
+            result = gets.chomp
+            makes(result)
         end
-        return code
+        return result
+    end
+
+    def trial(game)
+        count = 12
+        while count >= 0 do
+            if count != 0
+                if game.maker.name != 'You' 
+                    puts answer_prompt(count)
+                    answer = gets.chomp
+                    if answer.to_i == game.code.to_i
+                        puts correct(game.breaker.name)
+                        break
+                    else
+                        puts wrong
+                        count -= 1
+                    end  
+                else
+                    puts "computer part coming soon~"
+                    break
+                end
+            else
+                puts game_over(game)
+                puts again
+                result = gets.chomp
+                count -= 1
+            end
+        end
+        return result
     end
 
     private
