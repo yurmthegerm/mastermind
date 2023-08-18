@@ -8,6 +8,7 @@ module Input
             puts invalid
             makes(gets.chomp)
         end
+        return code
     end
 
     private

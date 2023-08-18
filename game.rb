@@ -7,6 +7,12 @@ class Game
     include Narrative
     include Input
 
+    attr_accessor :code
+
+    def initialize
+        self.code = nil
+    end
+
     def intro
         puts welcome
         puts mode
@@ -23,11 +29,12 @@ class Game
 
     def body(maker)
         if maker.class == Computer
-            puts maker.generate_code
+            self.code = maker.makes(maker.generate_code)
         else
             puts make_code
             result = gets.chomp
-            maker.makes(result)
+            self.code = maker.makes(result)
         end
     end
+    
 end
